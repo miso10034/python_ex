@@ -40,3 +40,12 @@ class Account():
 
     def __str__(self): 
         return f'예금주:{self.name}, 계좌번호:{self.account_number}, 잔고:{self.balance}'
+
+
+
+
+def str2int(msg):#상황에 따라 달라지기 때문에 메세지로 받아서 처리한다.
+        data = ''
+        while not data.isdecimal():
+            data = input(msg +  '>>> ')
+        return int(data)
