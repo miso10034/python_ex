@@ -6,7 +6,7 @@ print(sqlite3.version)
 print(sqlite3.sqlite_version) 
 path = os.path.dirname(__file__)
 conn = sqlite3.connect(path + '/example.db') #db랑 연결하겠다. 괄호 안에 파일 이름 확장자는 크게 상관이 없다.
-cur = conn.cursor()                          #있으면 그거 쓰고 없으면 새로 ㅏㅁㄴ든다.
+cur = conn.cursor()                          #있으면 그거 쓰고 없으면 새로 만든다.
 cur.execute(''' 
 create table if not exists stocks 
 (date text,trans text,symbol text,qty real,price real)

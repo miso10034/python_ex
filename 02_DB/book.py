@@ -1,22 +1,3 @@
-# 책정보를 저장하는 테이블
-''' 
-books
- - title 책제목 텍스트
- - published_data 출판날짜 텍스트
- - publisher 출판사 텍스트
- - pages 페이지수 정수
- - recommend 추천여부 정수
-'''
-
-'''
-create table if not exists books(
-    title text,
-    published_data text,
-    publisher text,
-    pages integer,
-    recommend integer
-)
-'''
 import sqlite3,os
 
 path = os.path.dirname(__file__)
@@ -37,7 +18,7 @@ def create_table():
     conn.commit()
     conn.close()
 
-create_table()
+# create_table()
 
 # 데이터 입력 함수
 def insert_books():
@@ -81,13 +62,8 @@ def some_books(number):
 # some_books(number)
 # 한권만 출력
 def one_books():
-    conn = sqlite3.connect(path + '/example.db') 
-    cur = conn.cursor()
-    sql = 'select * from books'
-    cur.execute(sql)
-    for item in cur.fetchone():
-        print(item)
-    conn.close()
+    pass
+
 # 조건 지정 및 정렬하여 검색
 # 정렬(asc,desc)
 def big_books(key='title', sort='asc', cond =''):
@@ -102,7 +78,7 @@ def big_books(key='title', sort='asc', cond =''):
     conn.close()
 
 # big_books('pages','desc','pages>= 300')
-big_books('pages','desc',"title like '%머신%' ")
+# big_books('pages','desc',"title like '%머신%' ")
 
 # 책은 title로 구분
 # 책 수정 
@@ -140,4 +116,4 @@ def delete_book():
     conn.commit()
     conn.close()
 
-delete_book()
+# delete_book()

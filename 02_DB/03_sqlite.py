@@ -5,7 +5,7 @@ conn = sqlite3.connect(path + '/example.db')
 cur = conn.cursor() 
 # select * from stocks where symbol = 'rhat'
 symbol = input('종목이름을 입력하세요 >>> ')
-sql = "select * from stocks where symbol = ?" #중괄호로 나온다.데이터타입은 상관없다. #물음표는 위치
+sql = "select * from stocks where symbol = :1" #중괄호로 나온다.데이터타입은 상관없다. #물음표는 위치
 # sql = "select * from stocks where symbol = '%s'" % symbol
 #select문이라서 커밋할 필요는 없다        #sqlite에서 이것이 가능하다.
 cur.execute(sql,(symbol,)) #데이터는 한건으로 나와야한다 리스트로 묶던 튜플로 묶던 해야한다. 
