@@ -10,7 +10,7 @@ create sequence namecard_seq;
 increment by 1
 start with 1;
 
-'''
+# '''
 def create_table():
     with oracledb.connect('SCOTT/TIGER@localhost:1521/xe') as conn:
         with conn.cursor() as cur: #with는 close가 필요 없다 
@@ -22,7 +22,7 @@ def create_table():
                 tel varchar2(20),
                 email varchar2(50)
             )
-            '''
+            ''' # if not exists 가 오라클에서는 지원 되지 않음
             try:
                 cur.execute(sql)
             except Exception as e:
@@ -79,11 +79,11 @@ def search_card():
             print(cardid_list)
             key = int(input('검색할 등록번호 >>> '))
             cur.execute('select * from namecard where cardid = :1',(key,))
-            print(cur.fethone())
+            print(cur.fetchone())
             
 
 def list_card(): # 무엇으로 정렬할 것인지
-    with oracledb.connect('SCOTT/TIGER@locathost:1521/xe') as conn:
+    with oracledb.connect('SCOTT/TIGER@localhost:1521/xe') as conn:
         with conn.cursor() as cur:
             key = input('정렬 키(name,tel,address,email) >>> ')
             sort = input('오름차순(asc), 내림차순(desc) >>> ')
@@ -91,12 +91,12 @@ def list_card(): # 무엇으로 정렬할 것인지
                 sql = f'select * from namecard order by {key} {sort}'
                 for item in cur.execute(sql):
                     print(f'등록번호:{item[0]},이름:{item[1]},전화번호:{item[3]},이메일:{item[4]},주소:{item[2]}')
-if __name__ =='__main__':
-    create_table()
-    # insert_card()
-    # update_card()
-    # delete_card()
-    # search_card()
+if __name__ =='__main__': #__main__에 자기가 주체가 되는 것은 여기에 들어있음
+    # create_table()      #__name__ 12_namecard에 import를 했을 떄 동작?
+    insert_card()
+    update_card()
+    delete_card()
+    search_card()
     list_card()
 
 
